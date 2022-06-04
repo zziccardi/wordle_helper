@@ -1,6 +1,4 @@
 
-# TODO: Add version control
-# TODO: Do proper unit testing, optionally in separate file
 # TODO: Add test and debug `python3 wordle_helper.py sho__ -i cableutrnpsok` not yielding "showy"
 # (should only filter out words containing incorrect letters in positions with underscores, not in
 # all positions!); check if -m has this problem too
@@ -125,49 +123,5 @@ def main():
   print(*valid_words, sep='\n')
 
 
-def test_get_valid_words_with_first_letter_confirmed():
-  letters = 'e_o_y'
-  valid_words = get_valid_words(letters)
-
-  assert valid_words == ['ebony', 'epoxy']
-
-
-def test_get_valid_words_with_first_letter_unknown():
-  letters = '_able'
-  valid_words = get_valid_words(letters)
-
-  assert valid_words == ['cable', 'fable', 'gable', 'sable', 'table']
-
-
-def test_get_valid_words_with_incorrect_letters():
-  correct_letters = '_able'
-  incorrect_letters = 'tsgf'
-  result = get_valid_words(correct_letters, incorrect_letters)
-
-  assert result == ['cable']
-
-
-def test_get_valid_words_with_misplaced_letters():
-  correct_letters = '_able'
-  misplaced_letters = 'c'
-  result = get_valid_words(correct_letters, misplaced_letters=misplaced_letters)
-
-  assert result == ['cable']
-
-
-def test_get_valid_words_with_incorrect_and_misplaced_letters():
-  correct_letters = '____e'
-  incorrect_letters = 'cablyuthsnr'
-  misplaced_letters = 'xo'
-  result = get_valid_words(correct_letters, incorrect_letters, misplaced_letters)
-
-  assert result == ['moxie', 'oxide']
-
-
 if __name__ == '__main__':
   main()
-  # test_get_valid_words_with_first_letter_confirmed()
-  # test_get_valid_words_with_first_letter_unknown()
-  # test_get_valid_words_with_incorrect_letters()
-  # test_get_valid_words_with_misplaced_letters()
-  # test_get_valid_words_with_incorrect_and_misplaced_letters()
