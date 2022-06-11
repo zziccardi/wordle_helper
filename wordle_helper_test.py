@@ -40,6 +40,14 @@ class WordleHelperTest(unittest.TestCase):
 
     self.assertEqual(result, ['moxie', 'oxide'])
 
+  def test_get_valid_words_with_incorrect_letters_filtered_only_in_unknown_positions(self):
+    correct_letters = 'sho__'
+    incorrect_letters = 'cableutrnpsok'
+
+    result = wordle_helper.get_valid_words(correct_letters, incorrect_letters)
+
+    self.assertIn('showy', result)
+
 
 if __name__ == '__main__':
   unittest.main()

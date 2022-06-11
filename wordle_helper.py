@@ -1,9 +1,6 @@
 
-# TODO: Add test and debug `python3 wordle_helper.py sho__ -i cableutrnpsok` not yielding "showy"
-# (should only filter out words containing incorrect letters in positions with underscores, not in
-# all positions!); check if -m has this problem too
-
 import argparse
+from enum import Enum
 import re
 import string
 from typing import Dict, List, Optional
@@ -55,23 +52,62 @@ def get_valid_words(correct_letters: str, incorrect_letters: str = '',
   letter_combos = map(lambda letter_list: ''.join(letter_list), current_letter_lists)
   valid_words = filter(lambda combo: english_dict.check(combo), letter_combos)
 
-  def word_has_incorrect_letter(word: str) -> bool:
-    for incorrect_letter in incorrect_letters:
-      if incorrect_letter in word:
-        return True
-    return False
+  class ConstraintMode(Enum):
+    WORD_HAS_NO_INCORRECT_LETTERS = 1
+    WORD_HAS_ALL_MISPLACED_LETTERS = 2
 
-  def word_has_all_misplaced_letters(word: str) -> bool:
-    for misplaced_letter in misplaced_letters:
-      if misplaced_letter not in word:
+  # TODO: write docstring and move to top level
+  def word_satisfies_incorrect_or_misplaced_letter_constraints(
+      word: str, mode: ConstraintMode) -> bool:
+    """"""
+
+    if mode == ConstraintMode.WORD_HAS_NO_INCORRECT_LETTERS:
+      letters = incorrect_letters
+    elif mode == ConstraintMode.WORD_HAS_ALL_MISPLACED_LETTERS:
+      letters = misplaced_letters
+
+    for letter in letters:
+      all_positions = []
+      start_index = 0
+
+      # Search for repeated letters.
+      while (position := word.find(letter, start_index)) != -1:
+        all_positions.append(position)
+        next_position = position + 1
+
+        if next_position >= len(word):
+          break
+
+        start_index = next_position
+
+      # Reject words where an incorrect letter is found at any position with an underscore.
+      # Or reject words where a misplaced letter is not found in all positions with underscores.
+      if ((mode == ConstraintMode.WORD_HAS_NO_INCORRECT_LETTERS and
+           any(map(lambda position: correct_letters[position] == '_', all_positions))) or
+          (mode == ConstraintMode.WORD_HAS_ALL_MISPLACED_LETTERS and
+           all(map(lambda position: correct_letters[position] != '_', all_positions)))):
         return False
+
     return True
 
   if incorrect_letters:
-    valid_words = filter(lambda word: not word_has_incorrect_letter(word), valid_words)
+    valid_words = filter(
+        lambda word: word_satisfies_incorrect_or_misplaced_letter_constraints(
+            word, ConstraintMode.WORD_HAS_NO_INCORRECT_LETTERS),
+        valid_words)
+
+  # TODO: add test for misplaced letters and ensure fails without changes
+  # def word_has_all_misplaced_letters(word: str) -> bool:
+  #   for misplaced_letter in misplaced_letters:
+  #     if misplaced_letter not in word:
+  #       return False
+  #   return True
 
   if misplaced_letters:
-    valid_words = filter(lambda word: word_has_all_misplaced_letters(word), valid_words)
+    valid_words = filter(
+        lambda word: word_satisfies_incorrect_or_misplaced_letter_constraints(
+            word, ConstraintMode.WORD_HAS_ALL_MISPLACED_LETTERS),
+        valid_words)
 
   return list(valid_words)
 
