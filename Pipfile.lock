@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "4e868d939e217a794eff93c858ae59b2aa743cae20f00d2481f629ea9c045bbf"
+            "sha256": "21d99416e33b34f9baa2e08115953c5558ebf9c8662e8b62448af5e833bfa99f"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,14 +16,16 @@
         ]
     },
     "default": {
-        "enchant": {
+        "pyenchant": {
             "hashes": [
-                "sha256:ce4af8ff70495a12aac4b130f9ea3328ca5d9489c328ce948aef5e583905fa4d",
-                "sha256:d690fb6b709f6bfbf5ffa533226ced29050f99e4d3890eef957595753bc1e24d"
+                "sha256:1cf830c6614362a78aab78d50eaf7c6c93831369c52e1bb64ffae1df0341e637",
+                "sha256:5a636832987eaf26efe971968f4d1b78e81f62bca2bde0a9da210c7de43c3bce",
+                "sha256:5facc821ece957208a81423af7d6ec7810dad29697cb0d77aae81e4e11c8e5a6",
+                "sha256:6153f521852e23a5add923dbacfbf4bebbb8d70c4e4bad609a8e0f9faeb915d1"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.7'",
-            "version": "==0.0.1"
+            "markers": "python_version >= '3.5'",
+            "version": "==3.2.2"
         }
     },
     "develop": {}
