@@ -1,0 +1,2 @@
+* Make correct_letters not required argument
+* Make incorrect & misplaced letters args sets to handle dupes
