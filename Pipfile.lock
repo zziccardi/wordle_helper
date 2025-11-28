@@ -1,11 +1,11 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "21d99416e33b34f9baa2e08115953c5558ebf9c8662e8b62448af5e833bfa99f"
+            "sha256": "a4fddcf5b14ad4d8d876c21a73f746ffc3f419e2fe2a668a84b96f5b62b370b4"
         },
         "pipfile-spec": 6,
         "requires": {
-            "python_version": "3.13"
+            "python_version": "3.14"
         },
         "sources": [
             {
@@ -18,14 +18,14 @@
     "default": {
         "pyenchant": {
             "hashes": [
-                "sha256:1cf830c6614362a78aab78d50eaf7c6c93831369c52e1bb64ffae1df0341e637",
-                "sha256:5a636832987eaf26efe971968f4d1b78e81f62bca2bde0a9da210c7de43c3bce",
-                "sha256:5facc821ece957208a81423af7d6ec7810dad29697cb0d77aae81e4e11c8e5a6",
-                "sha256:6153f521852e23a5add923dbacfbf4bebbb8d70c4e4bad609a8e0f9faeb915d1"
+                "sha256:04a5bd0e022ebe2e8c6d9e498ec3d650602e264ec5486e9c6a1b7f99c9507c49",
+                "sha256:1d55e075645a6edbb3c590fb42f9e02b4d455e4affe28a2227d5cb6d4868e626",
+                "sha256:3da00b1d01314d85aac733bb997415d7a3e875666dc81735ddcf320aa36b7a70",
+                "sha256:825288246b5debc9436f91967650974ef0d5636458502619e322c476f1283891"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.5'",
-            "version": "==3.2.2"
+            "markers": "python_version >= '3.9'",
+            "version": "==3.3.0"
         }
     },
     "develop": {}
