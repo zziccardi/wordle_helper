@@ -2,6 +2,11 @@
 
 A simple program to help with solving [Wordle](https://www.nytimes.com/games/wordle/index.html) puzzles
 
+## Installation
+
+The only dependency is [PyEnchant](https://pyenchant.github.io/pyenchant/), which can be retrieved with
+`pipenv install`.
+
 ## Usage
 
 ```
@@ -31,7 +36,3 @@ table
 ```
 
 See the test cases for additional examples.
-
-## Installation
-
-The only dependency is [PyEnchant](https://pyenchant.github.io/pyenchant/).
