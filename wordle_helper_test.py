@@ -48,6 +48,18 @@ class WordleHelperTest(unittest.TestCase):
 
     self.assertIn('showy', result)
 
+  def test_get_valid_words_with_no_correct_letters(self):
+    correct_letters = '_____'
+
+    result = wordle_helper.get_valid_words(correct_letters)
+
+    # All positions being unknown should result in many valid words.
+    self.assertGreater(len(result), 0)
+
+    # Expect common words to be included in the results.
+    self.assertIn('about', result)
+    self.assertIn('zebra', result)
+
 
 if __name__ == '__main__':
   unittest.main()

@@ -15,13 +15,13 @@ def get_valid_words(correct_letters: str, incorrect_letters: str = '',
   If present, incorrect letters will be used to filter out possible valid words. If present,
   misplaced letters (correct letters but in the wrong spots) will also be used for filtering. Note
   however that the positions of misplaced letters are not considered.
-  
+
   Args:
     correct_letters: confirmed (green) and unknown letters, where the latter are represented by
       underscores, in specific positions
     incorrect_letters: wrong (black) letters, in any order
     misplaced_letters: misplaced (yellow) letters, in any order
-  
+
   Returns:
     valid words matching constraints (in alphabetical order)
   """
@@ -134,20 +134,18 @@ def process_optional_args(args: argparse.Namespace) -> Dict[str, Optional[str]]:
 def main():
   parser = argparse.ArgumentParser()
 
-  parser.add_argument('correct_letters', type=str,
-    help='confirmed letters and underscores, where the latter represent unknown letters')
+  parser.add_argument('correct_letters', type=str, nargs='?', default='_____',
+      help='confirmed letters and underscores, where the latter represent unknown letters (default: _____)')
   parser.add_argument('-i', '--incorrect_letters', type=str, help='incorrect letters, in any order')
   parser.add_argument('-m', '--misplaced_letters', type=str, help='misplaced letters, in any order')
 
   args: argparse.Namespace = parser.parse_args()
-  correct_letters: str = args.correct_letters.lower()
+
+  correct_letters: str = args.correct_letters.lower() if args.correct_letters else '_____'
 
   if not re.compile('^[a-z_]{5}$').match(correct_letters):
     raise argparse.ArgumentError(
       '`correct_letters` must be 5 characters long and contain only letters and underscores')
-
-  if '_' not in correct_letters:
-    raise argparse.ArgumentError('`correct_letters` must contain at least one underscore')
 
   optional_args = process_optional_args(args)
 
