@@ -10,6 +10,8 @@ The only dependency is [PyEnchant](https://pyenchant.github.io/pyenchant/), whic
 ## Usage
 
 ```
+$ cd wordle_helper
+$ pipenv shell
 $ python3 wordle_helper.py -h
 usage: wordle_helper.py [-h] [-i INCORRECT_LETTERS] [-m MISPLACED_LETTERS] correct_letters
 

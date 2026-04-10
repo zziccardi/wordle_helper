@@ -1,3 +1,4 @@
+* Fix bug where running scripts without any args doesn't return instructions
 * Make incorrect & misplaced letters args sets to handle dupes
 * Make the script much more efficient by adding a tool to fetch all valid five-
   letter words upfront, then use that in the script.
